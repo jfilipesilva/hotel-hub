@@ -28,7 +28,7 @@ const ImageSlider = ({data}: ImageSliderProps) => {
     <View style={styles.mainContainer}>
       <Carousel
         ref={ref}
-        width={width - width * 0.2}
+        width={width - width * 0.1}
         height={width / 2}
         loop={false}
         data={data}
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
-    borderRadius: 20,
+    borderRadius: 10,
   },
   paginationDots: {
     backgroundColor: 'rgba(0,0,0,0.2)',

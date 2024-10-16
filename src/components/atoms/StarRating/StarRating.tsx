@@ -9,7 +9,7 @@ const StarRating = ({numberOfStars}: StarRatingProps) => {
   return (
     <View style={styles.mainContainer}>
       {Array.from({length: numberOfStars}, (_, i) => (
-        <Icon key={i} source="star" size={10} />
+        <Icon key={i} source="star" size={20} color="orange" />
       ))}
     </View>
   );
