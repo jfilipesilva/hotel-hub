@@ -50,7 +50,10 @@ const ImageSlider = ({data}: ImageSliderProps) => {
 };
 
 const styles = StyleSheet.create({
-  mainContainer: {flex: 1},
+  mainContainer: {
+    flex: 1,
+    position: 'relative',
+  },
   carouselImage: {
     width: '100%',
     height: '100%',
@@ -58,10 +61,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   paginationDots: {
-    backgroundColor: 'rgba(0,0,0,0.2)',
+    backgroundColor: 'white',
     borderRadius: 50,
   },
-  paginationContainer: {gap: 5, marginTop: 10},
+  paginationContainer: {
+    gap: 5,
+    bottom: 10,
+    marginTop: 10,
+    position: 'absolute',
+    alignSelf: 'center',
+  },
 });
 
 export default ImageSlider;
