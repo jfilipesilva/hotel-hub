@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Chip, Divider, Icon, Text} from 'react-native-paper';
+import {Card, Chip, Divider, Text} from 'react-native-paper';
 import ImageSlider from '../../molecules/ImageSlider/ImageSlider';
 import {StyleSheet, View} from 'react-native';
 import AddressLink from '../../atoms/AddressLink/AddressLink';
@@ -127,9 +127,9 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   priceText: {
-    marginTop: 20,
     textAlign: 'right',
     fontWeight: 700,
+    paddingVertical: 20,
   },
   addressText: {
     textDecorationLine: 'underline',
