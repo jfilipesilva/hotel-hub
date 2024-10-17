@@ -4,7 +4,7 @@ This is a project bootstrapped using [`@react-native-community/cli`](https://git
 
 > **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
-This project uses am endpoint to get the list of hotels so you need to create a `.env` file with the variable `API_URL`. For example `API_URL="your_endpoint"`
+This project uses an endpoint to get the list of hotels so you need to create a `.env` file with the variable `API_URL`. For example `API_URL="your_endpoint"`
 
 ## Step 1: Start the Metro Server
 
