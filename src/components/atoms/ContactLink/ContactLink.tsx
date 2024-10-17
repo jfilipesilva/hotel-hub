@@ -1,19 +1,19 @@
 import React from 'react';
 import {Linking, Pressable} from 'react-native';
-import {ContactTypeEnum} from '../../../utils/constants';
-import {Text} from 'react-native-paper';
+import {CONTACT_TYPE_ENUM} from '../../../utils/constants';
+import {Text, TextProps} from 'react-native-paper';
 
-type ContactLinkProps = {
+type ContactLinkProps = Omit<TextProps<string>, 'children'> & {
   contact: string;
-  type: keyof typeof ContactTypeEnum;
+  type: keyof typeof CONTACT_TYPE_ENUM;
 };
 
-const ContactLink = ({contact, type}: ContactLinkProps) => {
+const ContactLink = ({contact, type, ...otherProps}: ContactLinkProps) => {
   const url = type === 'email' ? `mailto:${contact}` : `tel:${contact}`;
 
   return (
     <Pressable onPress={() => Linking.openURL(url)}>
-      <Text>{contact}</Text>
+      <Text {...otherProps}>{contact}</Text>
     </Pressable>
   );
 };

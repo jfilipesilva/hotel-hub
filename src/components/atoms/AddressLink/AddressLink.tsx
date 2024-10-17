@@ -1,8 +1,8 @@
 import React from 'react';
 import {Linking, Platform, Pressable} from 'react-native';
-import {Text} from 'react-native-paper';
+import {Text, TextProps} from 'react-native-paper';
 
-type AddressLinkProps = {
+type AddressLinkProps = Omit<TextProps<string>, 'children'> & {
   city: string;
   label?: string;
   address: string;
@@ -16,6 +16,7 @@ const AddressLink = ({
   address,
   latitude,
   longitude,
+  ...otherProps
 }: AddressLinkProps) => {
   const scheme = Platform.select({
     ios: 'maps://0,0?q=',
@@ -31,7 +32,7 @@ const AddressLink = ({
 
   return (
     <Pressable onPress={() => Linking.openURL(url ?? '')}>
-      <Text>{`${address}, ${city}`}</Text>
+      <Text {...otherProps}>{`${address}, ${city}`}</Text>
     </Pressable>
   );
 };

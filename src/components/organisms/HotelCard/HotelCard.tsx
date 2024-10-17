@@ -1,10 +1,11 @@
 import React from 'react';
-import {Card, Chip, Divider, Text} from 'react-native-paper';
+import {Card, Chip, Divider, Icon, Text} from 'react-native-paper';
 import ImageSlider from '../../molecules/ImageSlider/ImageSlider';
 import {StyleSheet, View} from 'react-native';
 import AddressLink from '../../atoms/AddressLink/AddressLink';
 import StarRating from '../../atoms/StarRating/StarRating';
 import ContactLink from '../../atoms/ContactLink/ContactLink';
+import {CURRENCY_ENUM} from '../../../utils/constants';
 
 export type Hotel = {
   id: string;
@@ -31,7 +32,7 @@ export type Hotel = {
   };
   userRating: number;
   price: number;
-  currency: string;
+  currency: keyof typeof CURRENCY_ENUM;
 };
 
 type HotelCardProps = {
@@ -49,25 +50,41 @@ const HotelCard = ({hotel}: HotelCardProps) => {
               <StarRating numberOfStars={hotel.stars} />
               <Chip style={styles.chip}>{hotel.userRating}</Chip>
             </View>
-            <Text variant="titleLarge">{hotel.name}</Text>
+            <Text variant="titleLarge" style={styles.title}>
+              {hotel.name}
+            </Text>
             <AddressLink
+              variant="bodyLarge"
+              style={styles.addressText}
               city={hotel.location.city}
               label={hotel.location.address}
               address={hotel.location.address}
               latitude={hotel.location.latitude}
               longitude={hotel.location.longitude}
             />
-            <View style={styles.row}>
-              <Text>{`Check-in: ${hotel.checkIn.from}->${hotel.checkIn.to}`}</Text>
-              <Text>{`Checkout: ${hotel.checkOut.from}->${hotel.checkOut.to}`}</Text>
-            </View>
-            <Text>{`${hotel.currency}${hotel.price}`}</Text>
+            <Text variant="bodyMedium">
+              <Text style={styles.label}>Check-in: </Text>
+              {`from ${hotel.checkIn.from} to ${hotel.checkIn.to}`}
+            </Text>
+            <Text variant="bodyMedium">
+              <Text style={styles.label}>Checkout: </Text>
+              from {hotel.checkOut.from} to {hotel.checkOut.to}
+            </Text>
+            <Text style={styles.priceText} variant="titleLarge">
+              {`${CURRENCY_ENUM[hotel.currency]}${hotel.price} `}
+              <Text variant="bodyMedium">/night</Text>
+            </Text>
             <Divider style={styles.divider} />
             <View style={styles.row}>
-              <ContactLink contact={hotel.contact.email} type={'email'} />
               <ContactLink
-                contact={hotel.contact.phoneNumber}
+                variant="bodyMedium"
+                contact={hotel.contact.email}
+                type={'email'}
+              />
+              <ContactLink
                 type={'phoneNumber'}
+                variant="bodyMedium"
+                contact={hotel.contact.phoneNumber}
               />
             </View>
           </View>
@@ -100,10 +117,26 @@ const styles = StyleSheet.create({
   },
   hotelInfoSection: {
     paddingHorizontal: 16,
-    paddingBottom: 16,
+    paddingVertical: 16,
   },
   divider: {
     marginVertical: 10,
+  },
+  title: {
+    fontWeight: 500,
+    marginBottom: 5,
+  },
+  priceText: {
+    marginTop: 20,
+    textAlign: 'right',
+    fontWeight: 700,
+  },
+  addressText: {
+    textDecorationLine: 'underline',
+    marginBottom: 5,
+  },
+  label: {
+    fontWeight: 500,
   },
 });
 
