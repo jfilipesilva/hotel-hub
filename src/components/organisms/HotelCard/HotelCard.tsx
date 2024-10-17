@@ -42,32 +42,34 @@ const HotelCard = ({hotel}: HotelCardProps) => {
   return (
     <Card style={styles.mainContainer}>
       <Card.Content style={styles.cardContent}>
-        <ImageSlider data={hotel.gallery} />
-        <View style={styles.hotelInfoSection}>
-          <View style={styles.row}>
-            <StarRating numberOfStars={hotel.stars} />
-            <Chip style={styles.chip}>{hotel.userRating}</Chip>
-          </View>
-          <Text variant="titleLarge">{hotel.name}</Text>
-          <AddressLink
-            city={hotel.location.city}
-            label={hotel.location.address}
-            address={hotel.location.address}
-            latitude={hotel.location.latitude}
-            longitude={hotel.location.longitude}
-          />
-          <View style={styles.row}>
-            <Text>{`Check-in: ${hotel.checkIn.from}->${hotel.checkIn.to}`}</Text>
-            <Text>{`Checkout: ${hotel.checkOut.from}->${hotel.checkOut.to}`}</Text>
-          </View>
-          <Text>{`${hotel.currency}${hotel.price}`}</Text>
-          <Divider style={styles.divider} />
-          <View style={styles.row}>
-            <ContactLink contact={hotel.contact.email} type={'email'} />
-            <ContactLink
-              contact={hotel.contact.phoneNumber}
-              type={'phoneNumber'}
+        <View style={styles.cardContentWrapper}>
+          <ImageSlider data={hotel.gallery} />
+          <View style={styles.hotelInfoSection}>
+            <View style={styles.row}>
+              <StarRating numberOfStars={hotel.stars} />
+              <Chip style={styles.chip}>{hotel.userRating}</Chip>
+            </View>
+            <Text variant="titleLarge">{hotel.name}</Text>
+            <AddressLink
+              city={hotel.location.city}
+              label={hotel.location.address}
+              address={hotel.location.address}
+              latitude={hotel.location.latitude}
+              longitude={hotel.location.longitude}
             />
+            <View style={styles.row}>
+              <Text>{`Check-in: ${hotel.checkIn.from}->${hotel.checkIn.to}`}</Text>
+              <Text>{`Checkout: ${hotel.checkOut.from}->${hotel.checkOut.to}`}</Text>
+            </View>
+            <Text>{`${hotel.currency}${hotel.price}`}</Text>
+            <Divider style={styles.divider} />
+            <View style={styles.row}>
+              <ContactLink contact={hotel.contact.email} type={'email'} />
+              <ContactLink
+                contact={hotel.contact.phoneNumber}
+                type={'phoneNumber'}
+              />
+            </View>
           </View>
         </View>
       </Card.Content>
@@ -77,18 +79,20 @@ const HotelCard = ({hotel}: HotelCardProps) => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    overflow: 'hidden',
-    marginHorizontal: 20,
     marginBottom: 20,
+    marginHorizontal: 20,
   },
   cardContent: {
     paddingVertical: 0,
     paddingHorizontal: 0,
   },
+  cardContentWrapper: {
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-
     justifyContent: 'space-between',
   },
   chip: {
